@@ -1,4 +1,4 @@
-export { InputNode } from "./inputNode.jsx"
+export { InputNode } from "./InputNode.jsx"
 export { OutputNode } from "./outputNode.jsx"
 export { TextNode } from "./textNode.jsx"
 export { LLMNode } from "./llmNode.jsx"
