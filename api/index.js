@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, "public")))
 const server = http.createServer(app)
 const io = new Server(server, {
 	cors: {
-		origin: "https://squad-x-tau.vercel.app/",  
+		origin: "https://squad-x-tau.vercel.app",  
 	},
 })
 
