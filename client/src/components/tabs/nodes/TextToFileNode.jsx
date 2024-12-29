@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react"
 import { Position } from "reactflow"
 import { FileDown } from "lucide-react"
-import { BaseNode } from "./baseNode"
+import { BaseNode } from "./baseNode.jsx"
 
 export const TextToFileNode = ({ id, data }) => {
   const [fileType, setFileType] = useState(data?.fileType || "PDF")

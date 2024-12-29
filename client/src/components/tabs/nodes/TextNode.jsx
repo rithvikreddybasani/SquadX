@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react"
 import { Position, useUpdateNodeInternals } from "reactflow"
 import { FileText, RefreshCw } from "lucide-react"
-import { BaseNode } from "./baseNode"
+import { BaseNode } from "./baseNode.jsx"
 import { EditableDiv } from "../components/EditableDiv.jsx"
 
 export function TextNode({ id, data }) {

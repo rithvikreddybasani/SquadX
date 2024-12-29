@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react"
 import { Position } from "reactflow"
 import { FileOutputIcon } from "lucide-react"
-import { BaseNode } from "./baseNode"
+import { BaseNode } from "./baseNode.jsx"
 
 export const OutputNode = ({ id, data }) => {
   const [fieldName, setFieldName] = useState(data?.fieldName || `output_${id}`)

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react"
 import { Position } from "reactflow"
 import { BrainCircuit } from "lucide-react"
-import { BaseNode } from "./baseNode"
+import { BaseNode } from "./baseNode.jsx"
 
 export const LLMNode = ({ id, data }) => {
   const [model, setModel] = useState(data?.model || "gpt-4-turbo-2024-04-09")
