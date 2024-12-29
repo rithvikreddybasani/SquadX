@@ -6,7 +6,7 @@ import { createContext, useCallback, useEffect, useMemo } from "react"
 import { toast } from "react-hot-toast"
 import { io } from "socket.io-client"
 
-const BACKEND_URL = "http://localhost:3000/";
+const BACKEND_URL = "https://squadx.onrender.com/";
 
 
 const SocketContext = createContext()
