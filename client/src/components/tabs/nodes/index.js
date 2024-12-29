@@ -1,6 +1,6 @@
 export { InputNode } from "./InputNode.jsx"
 export { OutputNode } from "./OutputNode.jsx"
 export { TextNode } from "./TextNode.jsx"
-export { LLMNode } from "./llMNode.jsx"
+export { LLMNode } from "./LLMNode.jsx"
 export { TextToFileNode } from "./TextToFileNode.jsx"
 export { FileSaveNode } from "./FileSaveNode.jsx"
