@@ -14,10 +14,13 @@ app.use(express.static(path.join(__dirname, "public")))
 
 const server = http.createServer(app)
 const io = new Server(server, {
-	cors: {
-		origin: "*",  
-	},
-})
+  cors: {
+    origin: "https://squad-x-tau.vercel.app", // Allow requests from this origin
+    methods: ["GET", "POST"], // Allowed HTTP methods
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  },
+});
+
 
 let userSocketMap = []
 
