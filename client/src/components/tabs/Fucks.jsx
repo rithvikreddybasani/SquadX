@@ -16,6 +16,16 @@ ChartJS.register(
 function Fucks() {
   const { users } = useAppContext(); // Fetch users with their joinedAt time (timestamp in milliseconds)
   const [timeSpent, setTimeSpent] = useState([]); // State to hold the time spent by users
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +44,7 @@ function Fucks() {
       });
 
       setTimeSpent(newTimeSpent);
-    }, 1); // Update every minute
+    }, 60000); // Update every minute
 
     // Clear interval when the component unmounts
     return () => clearInterval(interval);
@@ -135,7 +145,7 @@ function Fucks() {
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.7)',
           padding: '20px',
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: isMobile ? 'column' : 'row',
           gap: '20px',
           overflow: 'hidden',
         }}
