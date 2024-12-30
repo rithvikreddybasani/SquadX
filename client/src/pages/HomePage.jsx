@@ -11,7 +11,7 @@ function HomePage() {
                 </div>
                 <div className="flex w-full animate-up-down justify-center sm:w-1/2 sm:block hidden">
                     <img
-                        src='./image.png'
+                        src='https://res.cloudinary.com/dddfjpzqu/image/upload/v1735533351/hcfduruvohy0scptlcgn.png'
                         alt="InterviewKit Illustration"
                         className="mx-auto w-[250px] sm:w-[400px]"
                     />
