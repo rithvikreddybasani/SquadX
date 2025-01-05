@@ -26,6 +26,10 @@ import { FcFlowChart } from "react-icons/fc";
 import { SiGooglegemini } from "react-icons/si";
 import { PiChats, PiPlay, PiUsers } from "react-icons/pi"
 import Fuck from "@/components/tabs/Fuck"
+import { FaRegFileCode } from "react-icons/fa";
+import Conversation from "@/components/tabs/Conversation"
+import { MdSpatialAudioOff } from "react-icons/md";
+import BasicFile from "@/components/tabs/BasicFile"
 
 const TabContext = createContext()
 
@@ -34,6 +38,8 @@ function TabContextProvider({ children }) {
     const [activeTab, setActiveTab] = useState(TABS.FILES)
     const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile)
     const [tabComponents, setTabComponents] = useState({
+        [TABS.CONVERSATION]:<Conversation/>,
+        [TABS.FILESBRO]:<BasicFile/>,
         [TABS.FUCKYOU]:<Fuckyou/>,
         [TABS.FUCK]:<Fuck/>,
         [TABS.FILES]: <FilesTab />,
@@ -56,6 +62,8 @@ function TabContextProvider({ children }) {
         [TABS.CHATS]: <PiChats size={30} />,
         [TABS.RUN]: <PiPlay size={28} />,
         [TABS.SCREENSHARE]:<BiVideoRecording size={28}/>,
+        [TABS.FILESBRO]:<FaRegFileCode size={25}/>,
+        [TABS.CONVERSATION]:<MdSpatialAudioOff size={28}/>,
         [TABS.AICHAT]:<SiGooglegemini size={28}/>,
         [TABS.AICALCULATOR]:<FcFlowChart size={28}/>,
         [TABS.TESTING]:<IoCalculator size={28}/>,

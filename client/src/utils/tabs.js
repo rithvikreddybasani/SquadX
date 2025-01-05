@@ -11,4 +11,6 @@ export default {
     FUCKYOU:"Fuckyou",
     FUCK:"Fuck",
     FUCKS:"Fucks",
+    CONVERSATION:"Conversation",
+    FILESBRO:"Filesbro",
 }

@@ -32,17 +32,19 @@ function Sidebar() {
                 style={showSidebar ? {} : { display: "none" }}
             >
                 <TabButton tabName={TABS.FILES} icon={tabIcons[TABS.FILES]} title= {TABS.FILES}/>
-                <TabButton tabName={TABS.FUCK} icon={tabIcons[TABS.FUCK]} title= {TABS.FUCK}/>
-                <TabButton tabName={TABS.FUCKYOU} icon={tabIcons[TABS.FUCKYOU]} title= {TABS.FUCKYOU}/>
-                <TabButton tabName={TABS.CHATS} icon={tabIcons[TABS.CHATS]}  title={TABS.CHATS} />
                 <TabButton tabName={TABS.RUN} icon={tabIcons[TABS.RUN]} title={TABS.RUN} />
+                <TabButton tabName={TABS.CHATS} icon={tabIcons[TABS.CHATS]}  title={TABS.CHATS} />
+                <TabButton tabName={TABS.FUCKYOU} icon={tabIcons[TABS.FUCKYOU]} title= {TABS.FUCKYOU}/>
                 <TabButton tabName={TABS.CLIENTS} icon={tabIcons[TABS.CLIENTS]} title={TABS.CLIENTS} />
+                <TabButton tabName={TABS.FUCK} icon={tabIcons[TABS.FUCK]} title= {TABS.FUCK}/>
                 <TabButton tabName={TABS.SETTINGS} icon={tabIcons[TABS.SETTINGS]} />
+                <TabButton tabName={TABS.CONVERSATION} icon={tabIcons[TABS.CONVERSATION]}/>
                 <TabButton tabName={TABS.SCREENSHARE} icon={tabIcons[TABS.SCREENSHARE]} />
                 <TabButton tabName={TABS.AICHAT} icon={tabIcons[TABS.AICHAT]}/>
                 <TabButton tabName={TABS.AICALCULATOR} icon={tabIcons[TABS.AICALCULATOR]}/>
                 <TabButton tabName={TABS.TESTING} icon={tabIcons[TABS.TESTING]}/>
                 <TabButton tabName={TABS.FUCKS} icon={tabIcons[TABS.FUCKS]}/>
+                <TabButton tabName={TABS.FILESBRO} icon={tabIcons[TABS.FILESBRO]}/>
                 <button className="self-end" onClick={changeState}>
                     {state === STATES.CODING ? (
                         <MdOutlineDraw size={30} />
