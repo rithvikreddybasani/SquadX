@@ -22,7 +22,10 @@
 ![](https://github.com/user-attachments/assets/934e160d-37d3-4dba-8f40-07198161c0a4)
 
 ![image](https://github.com/user-attachments/assets/6cec713e-4321-46fb-a7ff-3ec8aae0b8af)
+![image](https://github.com/user-attachments/assets/7fd0ea85-cca6-443b-b910-4f5cb645c9ad)
 
+
+![image](https://github.com/user-attachments/assets/3672c8f3-8d70-422e-8da1-c65c63b50383)
 
 
 
@@ -55,11 +58,13 @@ SquadX is a collaborative, real-time code editor where users can seamlessly code
 -   🤖 The built-in AI assistant provides suggestions, debugging help, and answers to coding queries in real-time.
 -   🗺️ Create and share flow diagrams like Low-Level Design (LLD) and High-Level Design (HLD) to visualize the architecture of your solution.
 -   📊 Built-in tools for generating dynamic bar graphs, pie charts, and other data visualizations to represent complex data efficiently during coding sessions.
+-   💡 A Conversation room for talking
+-   💬 File Utilities like Converting one form of file to other,compression etc
 
 
 ## 🚀 Live Preview
 
-You can view the live preview of the project [here](https://squad-x-tau.vercel.app/).
+You can view the live preview of the project [here](https://squad-x-reddy.vercel.app/).
 
 
 
