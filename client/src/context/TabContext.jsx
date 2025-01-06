@@ -24,9 +24,12 @@ import { LuFiles } from "react-icons/lu";
 import { MdBarChart } from "react-icons/md";
 import { FcFlowChart } from "react-icons/fc";
 import { SiGooglegemini } from "react-icons/si";
+import { IoMdGitBranch } from "react-icons/io";
 import { PiChats, PiPlay, PiUsers } from "react-icons/pi"
 import Fuck from "@/components/tabs/Fuck"
+import { IoGitPullRequestOutline } from "react-icons/io5";
 import { FaRegFileCode } from "react-icons/fa";
+import { IoGitBranchOutline } from "react-icons/io5";
 import Conversation from "@/components/tabs/Conversation"
 import { MdSpatialAudioOff } from "react-icons/md";
 import BasicFile from "@/components/tabs/BasicFile"
@@ -61,7 +64,7 @@ function TabContextProvider({ children }) {
         [TABS.SETTINGS]: <IoSettingsOutline size={28} />,
         [TABS.CHATS]: <PiChats size={30} />,
         [TABS.RUN]: <PiPlay size={28} />,
-        [TABS.SCREENSHARE]:<BiVideoRecording size={28}/>,
+        [TABS.SCREENSHARE]:<IoGitPullRequestOutline  size={28}/>,
         [TABS.FILESBRO]:<FaRegFileCode size={25}/>,
         [TABS.CONVERSATION]:<MdSpatialAudioOff size={28}/>,
         [TABS.AICHAT]:<SiGooglegemini size={28}/>,

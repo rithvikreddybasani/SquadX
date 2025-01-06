@@ -1,109 +1,72 @@
-import React from "react";
-import { useReactMediaRecorder } from "react-media-recorder";
-import { Button, Box, Typography, TextField } from "@mui/material";
-//import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import "regenerator-runtime/runtime";
-
-const Dictaphone = () => {
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
-
-  return (
-    <div style={{ padding: "20px", marginTop: "50px" }}>
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>
-    </div>
-  );
-};
+import React, { useState, useEffect } from "react";
 
 function ScreenShareTab() {
-  const { status, startRecording, stopRecording, mediaBlobUrl } =
-    useReactMediaRecorder({ screen: true });
+  const [showIntro, setShowIntro] = useState(true);
 
-  const handleDownload = () => {
-    if (mediaBlobUrl) {
-      const link = document.createElement("a");
-      link.href = mediaBlobUrl;
-      link.download = "screen-recording.mp4";
-      link.click();
-    } else {
-      alert("No recording available to download!");
-    }
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowIntro(false); // Hide intro after 3 seconds
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <Box sx={{ textAlign: "center", marginTop: "20px" }}>
-      <Typography variant="h6" sx={{ marginBottom: "20px" }}>
-        Status: <span style={{ color: "#3f51b5" }}>{status}</span>
-      </Typography>
-      <Box>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={startRecording}
-          sx={{ margin: "5px", textTransform: "none" }}
-        >
-          Start Recording
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={stopRecording}
-          sx={{ margin: "5px", textTransform: "none" }}
-        >
-          Stop Recording
-        </Button>
-      </Box>
-      {mediaBlobUrl && (
-        <Box
-          sx={{
-            marginTop: "20px",
+    <div style={{ width: "100vw", height: "100vh", margin: 0, padding: 0, overflow: "hidden" }}>
+      {/* Introductory Screen */}
+      {showIntro && (
+        <div
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(135deg, #1a1a2e, #16213e)",
+            color: "white",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
+            zIndex: 10,
+            animation: "curtain-close 3s forwards"
           }}
         >
-          <Typography variant="body1" sx={{ marginBottom: "10px" }}>
-            Preview:
-          </Typography>
-          <video
-            src={mediaBlobUrl}
-            controls
-            autoPlay
-            loop
+          <h1
             style={{
-              width: "300px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-            }}
-          />
-          <Button
-            variant="contained"
-            color="success"
-            onClick={handleDownload}
-            sx={{
-              marginTop: "10px",
-              textTransform: "none",
+              fontSize: "3rem",
+              fontWeight: "bold",
+              letterSpacing: "2px",
+              textAlign: "center",
+              textTransform: "uppercase",
+              background: "linear-gradient(90deg, #ff8c00, #ff0080)",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              animation: "fade-in 2s ease-in-out"
             }}
           >
-            Download Video
-          </Button>
-        </Box>
+            Clasp  
+            <br />
+            Build-In Version Control System
+          </h1>
+        </div>
       )}
 
-    </Box>
-    
+      {/* Main Content */}
+      <iframe
+        src="https://claspp-rithvik.vercel.app/"
+        width="100%"
+        height="100%"
+        style={{
+          border: "none",
+          position: "absolute",
+          top: "0",
+          left: "3",
+          zIndex: 1,
+          objectFit: "cover",
+          opacity: showIntro ? 0 : 1,
+          transition: "opacity 1s ease-in-out",
+        }}
+        title="audioConversation"
+      ></iframe>
+    </div>
   );
 }
 
