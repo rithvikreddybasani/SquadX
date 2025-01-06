@@ -5,9 +5,8 @@
 
 ![image](https://github.com/user-attachments/assets/1e855a85-357e-42a2-9526-eb3f9a54bbd8)
 
- 
 
-![WhiteBoard](https://github.com/user-attachments/assets/3f35284c-078f-4159-9b6a-23f78e68ac13)
+![image](https://github.com/user-attachments/assets/1fd71bfa-c026-47aa-b388-191e55a39885)
 
 
 ![Calculator](https://github.com/user-attachments/assets/3bf116c1-5973-4a97-95cf-0f3898670825)
@@ -16,6 +15,7 @@
 ![](https://github.com/user-attachments/assets/79cd0fdc-1335-4a7b-a843-dd19d36594c6)
 ![image](https://github.com/user-attachments/assets/9a00a4e7-082c-4f16-9931-a44638ba8b5e)
 
+![WhiteBoard](https://github.com/user-attachments/assets/3f35284c-078f-4159-9b6a-23f78e68ac13)
 
 ![](https://github.com/user-attachments/assets/bcd6231a-9c8e-4393-a8e4-c95760b4a3d8)
 
@@ -26,6 +26,7 @@
 
 
 ![image](https://github.com/user-attachments/assets/3672c8f3-8d70-422e-8da1-c65c63b50383)
+
 
 
 
@@ -60,11 +61,12 @@ SquadX is a collaborative, real-time code editor where users can seamlessly code
 -   📊 Built-in tools for generating dynamic bar graphs, pie charts, and other data visualizations to represent complex data efficiently during coding sessions.
 -   💡 A Conversation room for talking
 -   💬 File Utilities like Converting one form of file to other,compression etc
+-   📽️ A Build in Version Control System
 
 
 ## 🚀 Live Preview
 
-You can view the live preview of the project [here](https://squad-x-reddy.vercel.app/).
+You can view the live preview of the project [here](https://squad-x-reddi.vercel.app/).
 
 
 
