@@ -1,0 +1,30 @@
+/* Main Container */
+.parser-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    padding: 1rem;
+    overflow: hidden;
+  }
+  
+  /* Header Styles */
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+  }
+  
+  /* Editor Section */
+  .editor-section {
+    display: flex;
+    gap: 2rem;
+    height: calc(100vh - 150px);
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+  
+  /* Rest of the CSS remains the same */

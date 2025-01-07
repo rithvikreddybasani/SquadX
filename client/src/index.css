@@ -103,4 +103,337 @@ select {
     }
 }
 
+/* Add these styles to your CSS file */
+:root {
+    --primary-color: #4CAF50;
+    --background-dark: #282a36;
+    --text-light: #ffffff;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+  }
+  
+  .snippet-container {
+    background-color: var(--background-dark);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .snippet-container:hover {
+    transform: translateY(-2px);
+  }
+  
+  .snippet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .snippet-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .action-button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed);
+  }
+  
+  .action-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .action-button.edit { color: #ffd700; }
+  .action-button.save { color: #4CAF50; }
+  .action-button.delete { color: #ff4444; }
+  
+  .snippet-language {
+    color: var(--text-light);
+    font-size: 0.9em;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  
+  .snippet-content {
+    position: relative;
+  }
+  
+  .code-editor {
+    width: 100%;
+    min-height: 200px;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    padding: 16px;
+    border: none;
+    resize: vertical;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .copy-button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    font-size: 0.9em;
+  }
+  
+  .copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .copy-button.copied {
+    background-color: var(--primary-color);
+  }
+  
+  .session-timer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    backdrop-filter: blur(4px);
+  }
+  
+  .floating-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed);
+    z-index: 100;
+  }
+  
+  .floating-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .modal-content {
+    background-color: var(--background-dark);
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .modal-header h1 {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 4px;
+    transition: transform var(--transition-speed);
+  }
+  
+  .close-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .snippets-container {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 140px);
+  }
+  
+  .add-snippet-button {
+    margin: 20px;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color var(--transition-speed);
+    font-size: 1em;
+  }
+  
+  .add-snippet-button:hover {
+    background-color: #45a049;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+
+  /* Add this to your existing CSS */
+.language-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+  }
+  
+  .language-select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .language-select option {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+  }
+
+  @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.stagger-animate > * {
+  opacity: 0;
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.stagger-animate > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animate > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animate > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animate > *:nth-child(4) { animation-delay: 0.4s; }
 

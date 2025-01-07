@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Box, Typography, List, ListItem } from "@mui/material";
-import * as acorn from "acorn";  // Correct Acorn import
+import * as acorn from "acorn"; // Correct Acorn import
+import { motion } from "framer-motion"; // For animations
 
 // Acorn Parsing Logic
 const extractInfo = (jsCode) => {
@@ -83,147 +84,108 @@ const CodeEditor = () => {
 
   return (
     <Box sx={{
-      position: "fixed",  
-      top: 0, 
-      left: 0, 
-      width: "100vw", 
-      height: "100vh", 
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       padding: "20px",
-      zIndex: 1000,  
-      backgroundColor: "#2e2e2e", 
+      zIndex: 1000,
+      backgroundColor: "#2e2e2e",
     }}>
-      <Typography variant="h4" sx={{
-        marginBottom: "20px",
-        textAlign: "center",
-        fontWeight: "bold",
-        color: "white",
-      }}>
-        CodeParser
-      </Typography>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <Typography variant="h4" sx={{
+          marginBottom: "20px",
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "white",
+        }}>
+          CodeParser
+        </Typography>
+      </motion.div>
 
       {/* Text Area for Code Editor */}
-      <textarea
+      <motion.textarea
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
         value={code}
         onChange={handleEditorChange}
         style={{
-          width: "60%",  // Set width to 60% to avoid occupying full width
+          width: "60%",
           height: "300px",
           padding: "15px",
-          marginBottom: "20px",  // Add margin at the bottom
+          marginBottom: "20px",
           fontFamily: "monospace",
-          color: "white",  
-          backgroundColor: "#444444",  
+          color: "white",
+          backgroundColor: "#444444",
           fontSize: "16px",
-          borderRadius: "8px",  // Rounded corners
-          border: "1px solid #666666",  
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",  // Slight shadow for better depth
-          resize: "none",  // Disable resizing
+          borderRadius: "8px",
+          border: "1px solid #666666",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+          resize: "none",
         }}
       />
 
       {/* Centered Button */}
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{
-          marginTop: "20px",
-          alignSelf: "center",
-          zIndex: 20,  
-          fontSize: "16px",
-          fontWeight: "bold",
-          padding: "10px 20px",
-          backgroundColor: "#3f51b5",  // Custom button color
-          ":hover": {
-            backgroundColor: "#303f9f",  // Hover effect with darker button color
-          }
-        }}
-        onClick={handleParseCode}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        Parse Code
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            marginTop: "20px",
+            alignSelf: "center",
+            zIndex: 20,
+            fontSize: "16px",
+            fontWeight: "bold",
+            padding: "10px 20px",
+            backgroundColor: "#3f51b5",
+            ":hover": {
+              backgroundColor: "#303f9f",
+            }
+          }}
+          onClick={handleParseCode}
+        >
+          Parse Code
+        </Button>
+      </motion.div>
 
       {/* Display Extracted Info at Bottom */}
       <Box sx={{ marginTop: "30px", width: "60%" }}>
-        {parsedInfo.functions.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Functions:</Typography>
-            <List>
-              {parsedInfo.functions.map((func, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{func}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.arrowFunctions.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Arrow Functions:</Typography>
-            <List>
-              {parsedInfo.arrowFunctions.map((func, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{func}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.variables.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Variables:</Typography>
-            <List>
-              {parsedInfo.variables.map((variable, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{variable}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.constants.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Constants:</Typography>
-            <List>
-              {parsedInfo.constants.map((constant, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{constant}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.letVariables.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Let Variables:</Typography>
-            <List>
-              {parsedInfo.letVariables.map((letVar, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{letVar}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.imports.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Imports:</Typography>
-            <List>
-              {parsedInfo.imports.map((imported, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{imported}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
-
-        {parsedInfo.classes.length > 0 && (
-          <Box sx={{ marginBottom: "20px" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>Classes:</Typography>
-            <List>
-              {parsedInfo.classes.map((cls, index) => (
-                <ListItem key={index} sx={{ color: "white" }}>{cls}</ListItem>
-              ))}
-            </List>
-          </Box>
-        )}
+        {Object.entries(parsedInfo).map(([key, values]) => (
+          values.length > 0 && (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{ marginBottom: "20px" }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}:
+              </Typography>
+              <List>
+                {values.map((value, index) => (
+                  <ListItem key={index} sx={{ color: "white" }}>
+                    {value}
+                  </ListItem>
+                ))}
+              </List>
+            </motion.div>
+          )
+        ))}
       </Box>
     </Box>
   );

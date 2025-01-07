@@ -1,29 +1,55 @@
-function Conversation() {
-    return (
-        <div style={{
-            width: "100vw", 
-            height: "100vh", 
-            margin: 0, 
-            padding: 0, 
-            position: "relative", 
-            overflow: "hidden" // Prevent scrolling issues
-        }}>
-            <iframe
-                src="https://simple-audio-rooms.vercel.app/"
-                width="100%"
-                height="100%"
-                style={{
-                    border: "none",
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    zIndex: 1,
-                    objectFit: "cover" // Ensures the iframe covers the area without distortion
-                }}
-                title="audioConversation"
-            ></iframe>
+import React, { useState, useEffect } from "react";
+import "./ScreenShareTab.css";
+
+function ScreenShareTab() {
+  const [showIntro, setShowIntro] = useState(true);
+  const [animationPhase, setAnimationPhase] = useState(1);
+
+  useEffect(() => {
+    const timer1 = setTimeout(() => setAnimationPhase(2), 1000);
+    const timer2 = setTimeout(() => setAnimationPhase(3), 2000);
+    const timer3 = setTimeout(() => setShowIntro(false), 4000);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, []);
+
+  return (
+    <div className="screen-container">
+      {showIntro && (
+        <div className={`intro-screen phase-${animationPhase}`}>
+          <div className="particles">
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="particle" />
+            ))}
+          </div>
+          
+          <div className="logo-container">
+            <div className="logo-circle" />
+            <h1 className="title">
+              <span className="text-gradient">Entering</span>
+            </h1>
+            <h2 className="subtitle">
+              Audio-Rooms
+            </h2>
+          </div>
+
+          <div className="loading-bar">
+            <div className="loading-progress" />
+          </div>
         </div>
-    );
+      )}
+
+      <iframe
+        src="https://simple-audio-rooms.vercel.app/"
+        className={`main-frame ${!showIntro ? 'visible' : ''}`}
+        title="audioConversation"
+      />
+    </div>
+  );
 }
 
-export default Conversation
+export default ScreenShareTab;
