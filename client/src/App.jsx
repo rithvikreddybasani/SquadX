@@ -199,7 +199,7 @@ console.log(greet('World'));`,
       </BrowserRouter>
       <Toast />
 
-      <div className="session-timer">
+      <div className="session-timer hide-on-small">
         Session Time: {formatTime(timer)}
       </div>
 

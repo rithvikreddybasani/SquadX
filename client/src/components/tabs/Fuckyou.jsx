@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./AlgorithmVisualizer.css";
 
-function Fuckyou() {
+function AlgorithmVisualizer() {
   const [showIntro, setShowIntro] = useState(true);
   const [phase, setPhase] = useState(1);
+  const [selectedIframe, setSelectedIframe] = useState(null);
 
   useEffect(() => {
     const timer1 = setTimeout(() => setPhase(2), 1000);
     const timer2 = setTimeout(() => setPhase(3), 2000);
     const timer3 = setTimeout(() => setShowIntro(false), 4000);
-    
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
     };
   }, []);
+
+  const handleOptionClick = (option) => {
+    setSelectedIframe(option);
+  };
 
   return (
     <div className="visualizer-container">
@@ -26,7 +31,7 @@ function Fuckyou() {
               <div key={i} className="grid-cell" />
             ))}
           </div>
-          
+
           <div className="binary-rain">
             {[...Array(20)].map((_, i) => (
               <div key={i} className="binary-column">
@@ -48,10 +53,10 @@ function Fuckyou() {
                 ))}
               </div>
             </div>
-            
-            <h1 className="title">Algorithm Visualizer</h1>
-            <div className="subtitle">Visualize Data Structures & Algorithms</div>
-            
+
+            <h1 className="title">Visualizer</h1>
+            <div className="subtitle">Visualize Data Structures & Algorithms and React</div>
+
             <div className="loading-container">
               <div className="loading-bar">
                 <div className="loading-progress"></div>
@@ -62,13 +67,39 @@ function Fuckyou() {
         </div>
       )}
 
-      <iframe
-        src="https://algorithm-visualizer.org"
-        className={`main-frame ${!showIntro ? 'visible' : ''}`}
-        title="Algorithm Visualizer"
-      />
+      {!showIntro && !selectedIframe && (
+        <div className="options-container">
+          <h2 className="options-title">Choose an Option</h2>
+          <div className="options-buttons">
+            <button
+              className="option-button animated-button"
+              onClick={() => handleOptionClick("react-playground")}
+            >
+              React Playground
+            </button>
+            <button
+              className="option-button animated-button"
+              onClick={() => handleOptionClick("dsa-visualizer")}
+            >
+              DSA Visualizer
+            </button>
+          </div>
+        </div>
+      )}
+
+      {selectedIframe && (
+        <iframe
+          src={
+            selectedIframe === "react-playground"
+              ? "https://reactplayground.vercel.app"
+              : "https://algorithm-visualizer.org"
+          }
+          className="main-frame visible"
+          title={selectedIframe === "react-playground" ? "React Playground" : "DSA Visualizer"}
+        />
+      )}
     </div>
   );
 }
 
-export default Fuckyou
+export default AlgorithmVisualizer;
