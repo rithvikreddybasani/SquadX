@@ -10,6 +10,44 @@
     }
 }
 
+.chatbot-toggle-button {
+  background-color: #0078d7;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between icon and text */
+  transition: all 0.3s ease;
+}
+
+.chatbot-toggle-button:hover {
+  background-color: #005bb5;
+}
+
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 400px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+  .chatbot-toggle-button {
+    bottom: 150px;
+  }
+}
+
+
 body {
     font-family: "Space Grotesk", sans-serif;
     width: 100%;
