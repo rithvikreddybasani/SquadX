@@ -83,6 +83,12 @@ function AlgorithmVisualizer() {
             >
               DSA Visualizer
             </button>
+            <button
+              className="option-button animated-button"
+              onClick={() => handleOptionClick("htmlcss")}
+            >
+              HTML-CSS-JS
+            </button>
           </div>
         </div>
       )}
@@ -92,10 +98,10 @@ function AlgorithmVisualizer() {
           src={
             selectedIframe === "react-playground"
               ? "https://reactplayground.vercel.app"
-              : "https://algorithm-visualizer.org"
+              : selectedIframe==="htmlcss"?"https://htmlcssjssyn.vercel.app":"https://algorithm-visualizer.org"
           }
           className="main-frame visible"
-          title={selectedIframe === "react-playground" ? "React Playground" : "DSA Visualizer"}
+          title={selectedIframe === "react-playground" ? "React Playground" :selectedIframe==="dsa-visualizer"?"Data Visulizer": "HTML-CSS-JS"}
         />
       )}
     </div>
