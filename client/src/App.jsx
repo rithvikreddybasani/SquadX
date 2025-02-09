@@ -7,7 +7,8 @@ import PageNot from "./pages/PageNot";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { MdContentCopy } from "react-icons/md";
-import { FaPlus, FaTrashAlt, FaRegFileCode, FaEdit, FaSave, FaTimes } from "react-icons/fa";
+import Chatbot from './Chatbot.jsx';
+import {FaRobot, FaPlus, FaTrashAlt, FaRegFileCode, FaEdit, FaSave, FaTimes } from "react-icons/fa";
 
 const SUPPORTED_LANGUAGES = [
   "javascript",
@@ -144,6 +145,7 @@ function App() {
   const [timer, setTimer] = useState(0);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [snippets, setSnippets] = useState([
     {
       code: `const greet = (name) => {
@@ -159,7 +161,9 @@ console.log(greet('World'));`,
     const newSnippet = { code: `// New snippet`, language: "javascript" };
     setSnippets((prevSnippets) => [...prevSnippets, newSnippet]);
   };
-
+  const toggleChatbot = () => {
+    setIsChatbotOpen((prev) => !prev);
+  };
   const deleteSnippet = (index) => {
     setSnippets((prevSnippets) => prevSnippets.filter((_, i) => i !== index));
   };
@@ -199,9 +203,20 @@ console.log(greet('World'));`,
       </BrowserRouter>
       <Toast />
 
-      <div className="session-timer hide-on-small">
-        Session Time: {formatTime(timer)}
-      </div>
+      <div>
+  <button
+    onClick={toggleChatbot}
+    className=" chatbot-toggle-button"
+    title="Toggle Chatbot"
+  >
+    <FaRobot size={33} />
+  </button>
+  {isChatbotOpen && (
+    <div className="chatbot-wrapper">
+      <Chatbot />
+    </div>
+  )}
+</div>
 
       <button
         onClick={() => setIsModalOpen(!isModalOpen)}
