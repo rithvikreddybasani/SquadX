@@ -1,194 +1,140 @@
 import React, { useState } from "react";
-import { Button, Box, Typography, List, ListItem } from "@mui/material";
-import * as acorn from "acorn"; // Correct Acorn import
-import { motion } from "framer-motion"; // For animations
+import Groq from "groq-sdk";
+import { Box, Button, TextField, Typography, CircularProgress } from "@mui/material";
+import { motion } from "framer-motion";
 
-// Acorn Parsing Logic
-const extractInfo = (jsCode) => {
-  const ast = acorn.parse(jsCode, {
-    ecmaVersion: 2020,
-    sourceType: "module",
+const Fuck = () => {
+  const groq = new Groq({
+    apiKey: "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",
+    dangerouslyAllowBrowser: true,
   });
 
-  let functions = [];
-  let variables = [];
-  let constants = [];
-  let letVariables = [];
-  let imports = [];
-  let classes = [];
-  let arrowFunctions = [];
+  const [code, setCode] = useState("");
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function traverseNode(node) {
-    if (node.type === "FunctionDeclaration" || node.type === "FunctionExpression" || node.type === "ArrowFunctionExpression") {
-      if (node.type === "ArrowFunctionExpression") {
-        arrowFunctions.push(node.id ? node.id.name : "Anonymous Arrow Function");
-      } else {
-        functions.push(node.id ? node.id.name : "Anonymous Function");
-      }
-    }
-
-    if (node.type === "VariableDeclaration") {
-      node.declarations.forEach(declaration => {
-        const name = declaration.id.name;
-        if (node.kind === "const") {
-          constants.push(name);
-        } else if (node.kind === "let") {
-          letVariables.push(name);
-        } else {
-          variables.push(name);
-        }
-      });
-    }
-
-    if (node.type === "ImportDeclaration") {
-      imports.push(node.source.value);
-    }
-
-    if (node.type === "ClassDeclaration") {
-      classes.push(node.id ? node.id.name : "Anonymous Class");
-    }
-  }
-
-  function traverse(ast) {
-    ast.body.forEach(node => {
-      traverseNode(node);
-      if (node.body) traverse(node.body);
+  async function getGroqChatCompletion(code) {
+    return groq.chat.completions.create({
+      messages: [{ role: "user", content: code }],
+      model: "llama-3.3-70b-versatile",
     });
   }
 
-  traverse(ast);
-
-  return { functions, variables, constants, letVariables, imports, classes, arrowFunctions };
-};
-
-const CodeEditor = () => {
-  const [code, setCode] = useState("// Write your JavaScript code here...");
-  const [parsedInfo, setParsedInfo] = useState({
-    functions: [],
-    variables: [],
-    constants: [],
-    letVariables: [],
-    imports: [],
-    classes: [],
-    arrowFunctions: [],
-  });
-
-  const handleParseCode = () => {
-    const info = extractInfo(code);
-    setParsedInfo(info);
-  };
-
-  const handleEditorChange = (event) => {
+  const handleCodeChange = (event) => {
     setCode(event.target.value);
   };
 
+  const handleAnalyzeClick = async () => {
+    setLoading(true);
+    try {
+      const chatCompletion = await getGroqChatCompletion(code);
+      setOutput(chatCompletion.choices[0]?.message?.content || "No response.");
+    } catch (error) {
+      console.error(error);
+      setOutput("Error analyzing the code.");
+    }
+    setLoading(false);
+  };
+
   return (
-    <Box sx={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100vw",
-      height: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: "20px",
-      zIndex: 1000,
-      backgroundColor: "#2e2e2e",
-    }}>
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        overflow: "auto", // Makes the entire page scrollable
+        display: "flex",
+        flexDirection: "column",
+        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+        padding: 3,
+      }}
+    >
+      {/* Header */}
+      <Typography
+        variant="h4" // Decreased size
+        align="center"
+        fontWeight="bold"
+        gutterBottom
+        sx={{ color: "#fff", marginBottom: 3 }}
       >
-        <Typography variant="h4" sx={{
-          marginBottom: "20px",
-          textAlign: "center",
-          fontWeight: "bold",
-          color: "white",
-        }}>
-          CodeParser
-        </Typography>
-      </motion.div>
+        Code Analyzer 🔍
+      </Typography>
 
-      {/* Text Area for Code Editor */}
-      <motion.textarea
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        value={code}
-        onChange={handleEditorChange}
-        style={{
-          width: "60%",
-          height: "300px",
-          padding: "15px",
-          marginBottom: "20px",
-          fontFamily: "monospace",
-          color: "white",
-          backgroundColor: "#444444",
-          fontSize: "16px",
-          borderRadius: "8px",
-          border: "1px solid #666666",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-          resize: "none",
+      {/* Input and Output Section */}
+      <Box
+        sx={{
+          display: "flex",
+          flexGrow: 1,
+          gap: 3,
+          flexDirection: { xs: "column", md: "row" }, // Responsive layout
         }}
-      />
-
-      {/* Centered Button */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            marginTop: "20px",
-            alignSelf: "center",
-            zIndex: 20,
-            fontSize: "16px",
-            fontWeight: "bold",
-            padding: "10px 20px",
-            backgroundColor: "#3f51b5",
-            ":hover": {
-              backgroundColor: "#303f9f",
-            }
-          }}
-          onClick={handleParseCode}
-        >
-          Parse Code
-        </Button>
-      </motion.div>
-
-      {/* Display Extracted Info at Bottom */}
-      <Box sx={{ marginTop: "30px", width: "60%" }}>
-        {Object.entries(parsedInfo).map(([key, values]) => (
-          values.length > 0 && (
-            <motion.div
-              key={key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              style={{ marginBottom: "20px" }}
+        {/* Code Input Section */}
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <TextField
+            multiline
+            rows={10} // Reduced rows for better spacing
+            variant="outlined"
+            fullWidth
+            placeholder="Enter your code here..."
+            value={code}
+            onChange={handleCodeChange}
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.2)",
+              borderRadius: 1,
+              fontSize: "0.9rem", // Reduced font size
+              "& .MuiInputBase-input": { color: "#fff", fontSize: "0.9rem" },
+            }}
+          />
+          <motion.div whileHover={{ scale: 1.05 }} style={{ marginTop: 12 }}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={handleAnalyzeClick}
+              disabled={loading}
+              sx={{
+                padding: 1.2,
+                fontSize: "0.9rem", // Reduced button text size
+                fontWeight: "bold",
+                background: "#ff9800",
+                "&:hover": { background: "#e68900" },
+              }}
             >
-              <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}:
-              </Typography>
-              <List>
-                {values.map((value, index) => (
-                  <ListItem key={index} sx={{ color: "white" }}>
-                    {value}
-                  </ListItem>
-                ))}
-              </List>
-            </motion.div>
-          )
-        ))}
+              {loading ? <CircularProgress size={22} sx={{ color: "#fff" }} /> : "Analyze Code"}
+            </Button>
+          </motion.div>
+        </Box>
+
+        {/* Output Section */}
+        <Box
+          sx={{
+            flex: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            borderRadius: 2,
+            padding: 2,
+            backdropFilter: "blur(5px)",
+            overflowY: "auto",
+            minHeight: "200px",
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#fff", marginBottom: 1.5 }}>
+            Analysis Result:
+          </Typography>
+          <Typography
+            variant="body2" // Reduced font size for better fit
+            sx={{
+              color: "#fff",
+              fontSize: "0.9rem",
+              lineHeight: 1.5,
+              whiteSpace: "pre-wrap",
+              fontFamily: "monospace",
+            }}
+          >
+            {output}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
 };
 
-export default CodeEditor;
+export default Fuck;
