@@ -33,6 +33,8 @@ import { IoGitBranchOutline } from "react-icons/io5";
 import Conversation from "@/components/tabs/Conversation"
 import { MdSpatialAudioOff } from "react-icons/md";
 import BasicFile from "@/components/tabs/BasicFile"
+import Task from "@/components/tabs/Task"
+import { MdTaskAlt } from "react-icons/md";
 
 const TabContext = createContext()
 
@@ -54,7 +56,8 @@ function TabContextProvider({ children }) {
         [TABS.AICHAT]:<AiChatbot/>,
         [TABS.AICALCULATOR]:<AiCalculator/>,
         [TABS.TESTING]:<Testing/>,
-        [TABS.FUCKS]:<Fucks/>
+        [TABS.FUCKS]:<Fucks/>,
+        [TABS.TASK]:<Task/>
     }) 
     const tabIcons = {
         [TABS.FUCKYOU]: <VscDebugConsole size={28} />,
@@ -70,7 +73,8 @@ function TabContextProvider({ children }) {
         [TABS.AICHAT]:<SiGooglegemini size={28}/>,
         [TABS.AICALCULATOR]:<FcFlowChart size={28}/>,
         [TABS.TESTING]:<IoCalculator size={28}/>,
-        [TABS.FUCKS]:<MdBarChart size={28}/>
+        [TABS.FUCKS]:<MdBarChart size={28}/>,
+        [TABS.TASK]:<MdTaskAlt size={28}/>
     }
 
     return (
