@@ -39,6 +39,7 @@ function Sidebar() {
                 <TabButton tabName={TABS.CLIENTS} icon={tabIcons[TABS.CLIENTS]} title={TABS.CLIENTS} />
                 <TabButton tabName={TABS.FUCK} icon={tabIcons[TABS.FUCK]} title= {TABS.FUCK}/>
                 <TabButton tabName={TABS.SETTINGS} icon={tabIcons[TABS.SETTINGS]} />
+                <TabButton tabName={TABS.TASK} icon={tabIcons[TABS.TASK]} />
                 <TabButton tabName={TABS.CONVERSATION} icon={tabIcons[TABS.CONVERSATION]}/>
                 <TabButton tabName={TABS.AICHAT} icon={tabIcons[TABS.AICHAT]}/>
                 <TabButton tabName={TABS.AICALCULATOR} icon={tabIcons[TABS.AICALCULATOR]}/>
