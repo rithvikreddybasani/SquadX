@@ -64,6 +64,7 @@ SquadX is a collaborative, real-time code editor where users can seamlessly code
 -   💬 File Utilities like Converting one form of file to other,compression etc
 -   📽️ A Build in Version Control System
 -   💡 Code Snippets are present which can be used to store common codes
+-   💬 AI Powered inline assitant
 
 
 ## 🚀 Live Preview
