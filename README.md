@@ -33,6 +33,8 @@
 
 SquadX is a collaborative, real-time code editor where users can seamlessly code together. It provides a platform for multiple users to enter a room, share a unique room ID, and collaborate on code simultaneously.
 
+Report: [SquadX](https://github.com/user-attachments/files/28296252/DevSync.Major.Project.-CSE-REG.final.pdf)
+
 
 ## 🔮 Features
 
